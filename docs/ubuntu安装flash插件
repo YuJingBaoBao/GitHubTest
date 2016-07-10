@@ -1,0 +1,6 @@
+1、打开网络视频时，根据提示点击跳转到https://get.adobe.com/flashplayer/
+2、选择APT，但总是下载或安装不成功；选择rpm，安装时又提示缺库
+3、选择.tar.gz，根据http://www.2cto.com/os/201404/294631.html，
+（1）解压后，将libflashplayer.so拷到firefox的插件目录/usr/lib/mozilla/plugin/下，mv libflashplayer.so /usr/lib/firefox/browser/plugins 
+（2）将usr/目录下所有文件拷到/usr下，sudo cp -r usr/* /usr
+（3）重启firefox就好了。

@@ -1,0 +1,34 @@
+安装：
+1、首先按网上说的关闭windows的安全启动模式，这样在启动时会有一把红色的锁
+2、从u盘启动后，在安装选项上，按鸟哥和网上的教程，用windows下预留的空闲分区，做了四个挂载点，/、/home、/boot和交换分区。一开始把/设为主分区，结果安装报错，后来把所有分区设为逻辑分区，就安装成功了。
+
+
+键盘、触控笔、扬声器用不了：
+1、装好后发现这些设备都用不了，很不爽，于是采用这个教程：http://tieba.baidu.com/p/3313820153
+2、实际上操作步骤在这里：https://github.com/rubiojr/surface3-kernel
+我自己的执行步骤如下：
+（1）sudo apt-get install git build-essential kernel-package fakeroot libncurses5-dev bc
+（2）git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git  结果网速慢得要死，要下载的包也大，于是去linux内核官网下载内核，还是不够快且经常断网，于是在国内搜索下载了linux-4.3.3
+（3）下载完后，按https://wiki.ubuntu.com/KernelTeam/GitKernelBuild进行编译，进行到make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-surface3时，因为缺少openssl/*.h的原因，执行不下去。
+（4）采用http://blog.chinaunix.net/uid-25932176-id-4231082.html的方案，sudo apt-get install libssl-dev后，就没有openssl的问题了
+（5）再执行make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-surface3，比较顺利在当前的上层路径上生成了：
+a  linux-firmware-image-4.3.3-surface3_4.3.3-surface3-1_amd64.deb
+b  linux-headers-4.3.3-surface3_4.3.3-surface3-1_amd64.deb
+c  linux-image-4.3.3-surface3_4.3.3-surface3-1_amd64.deb
+d  linux-image-4.3.3-surface3-dbg_4.3.3-surface3-1_amd64.deb
+e  linux-libc-dev_4.3.3-surface3-1_amd64.deb
+（6）执行sudo dpkg -i *.deb，执行的顺序为b a c d e（自己的顺序，未考证是否合理）
+（7）sudo reboot  重启时要选名字有surface3的内核
+（8）执行剩余的步骤（手动创建了/etc/X11/xorg.conf），重启时选择surface3这个内核，然而发现没什么卵用，设备还是用不了。
+（9）按http://tieba.baidu.com/p/3313820153的贴吧作者说的，把配置写入到/usr/share/X11/xorg.conf.d/10-evdev.conf，重启，还是不行。
+（10）于是又sudo apt-get upgrade和sudo apt-get update，还是不行。
+（11）又下载http://surface3.rbel.co/kernel/的3.16相关的4个文件，并用dpkg执行（采用贴吧作者的建议，先执行headers那个），成功在/boot里生成了相应的启动文件，但启动时选择该内核后启动不了，卡在load initial ramdisk。转移到13步
+（12）这时发现/boot容量已经到了100%，于是创建~/boot_bak，把不怎么使用的4.4.0-21的boot文件转移到此。（/boot容量太小了，以后有机会重新划分一下）
+（13）再次清理了/boot，把先前编译的无用内容都转移到~/boot_bak
+（14）打算自己拿linux-3.16的内核编译几个deb包。于是从oschina下载了内核包，又重复https://wiki.ubuntu.com/KernelTeam/GitKernelBuild的过程。如果报没有include/compiler-gcc5.h,就按http://mamicode.com/info-detail-1227032.html说的，把内容复制保存为include/compiler-gcc5.h。
+（15）然而后续编译还是报错了。
+
+——————————————————————————————————————————————————————————————————
+最后我受不了了，翻墙搜索找到了解决方案（键盘可用），并在贴吧上发帖留念：
+http://tieba.baidu.com/p/4661377643
+
