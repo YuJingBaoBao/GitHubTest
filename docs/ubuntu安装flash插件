@@ -4,3 +4,6 @@
 （1）解压后，将libflashplayer.so拷到firefox的插件目录/usr/lib/mozilla/plugin/下，mv libflashplayer.so /usr/lib/firefox/browser/plugins 
 （2）将usr/目录下所有文件拷到/usr下，sudo cp -r usr/* /usr
 （3）重启firefox就好了。
+
+
+
