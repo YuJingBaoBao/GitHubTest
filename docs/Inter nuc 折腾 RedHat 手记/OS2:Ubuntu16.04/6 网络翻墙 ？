@@ -1,0 +1,5 @@
+1、登陆shadowsocks
+2、根据https://github.com/shadowsocks/shadowsocks-qt5/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97说明，安装Ubuntu版本
+3、命令行ss-qt5即可启动shadowsocks小飞机
+4、小飞机虽然启动了，还是不能上google，不知道为何。于是按照https://s-s.pw/archives/54说明安装了chrome插件，和前面安装的qt客户端结合起来，终于可以用了。
+

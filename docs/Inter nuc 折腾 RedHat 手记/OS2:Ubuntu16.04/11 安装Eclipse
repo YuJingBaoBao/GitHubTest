@@ -1,0 +1,19 @@
+将eclipse-java-mars-2-linux-gtk-x86_64.tar.gz解压后，放到/opt下，并在桌面上创建了链接。
+
+然而却无法启动，提示没有安装java运行环境。
+
+于是下载了jdk-8u92-linux-x64.tar.gz。
+
+采用http://jingyan.baidu.com/article/925f8cb81c4150c0dde056ef.html的做法：
+将解压后的jdk包转移到/usr/local下
+
+在/etc/profile中添加如下内容：
+export JAVA_HOME=/usr/local/jdk1.8.0_92
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib/rt.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+
+这样JDK就装好了。
+
+重启后，于是eclipse也可以用了。

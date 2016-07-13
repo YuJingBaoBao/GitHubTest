@@ -1,0 +1,50 @@
+
+
+1 尝试了安装NUC自带无线网卡和自购的TPLINK的USB无线网卡的驱动，均失败。
+
+2 后来将RedHat主机与一台可无线上网的笔记本直连，主机的网络配置为DHCP，笔记本的无线网络设置为共享，就可以用了。
+
+3 但和别的电脑用有线方式共享终不是长久之计。查找资料听说要把驱动编译进内核！于是打算先升级试试，反正升级没坏处。
+yum update
+yum upgrade
+然而都出错中断了。
+
+
+4 查到Intel NUC（NUC5i3RYH）自带的网卡为Intel 7265 AC
+然后到intel官网上找到了iwlwifi-7265-ucode-25.30.14.0.tgz
+按照其中的README进行：
+将相应文件cp到/lib/firmware和/usr/lib/firmware下，
+再到/usr/src/kernels/2.6.32-431.el6.x86_64欲编译内核，却总是出错：
+[root@localhost 2.6.32-431.el6.x86_64]# make bzImage
+  CHK     include/linux/version.h
+  CHK     include/linux/utsrelease.h
+  SYMLINK include/asm -> include/asm-x86
+make[1]: *** No rule to make target `missing-syscalls'.  Stop.
+make: *** [prepare0] Error 2
+于是各种搜索解决方案，后来发现好像是个bug！
+在redhat的bug报告里有：https://bugzilla.redhat.com/show_bug.cgi?id=690773
+
+看来似乎只能重新装一个新版本的linux了。
+
+5、决定下载一个新版linux内核来编译
+https://www.kernel.org/
+下载了linux4.6
+打开menuconfig菜单并保存一个config文件才能make bzImage
+按照鸟哥的教程完成之后，发现redhat6.5从4.6的内核启动不了。
+
+
+6、于是再编译一个新版的2.6.38内核
+结果这个新内核连有线网都连不上，eth0都不见了。
+在/usr/src/kernels/linux-2.6.38.8的drivers/net/wireless/下可以看到各种网卡的驱动。
+又手动在.config文件里搜索8192，把相关配置项都改为=y
+再重新编译。
+make all
+
+
+7.又还是想安装TPLINK网卡的驱动。
+把RTL8188的驱动也编译进2.6.38.8的内核了，居然还是不行，有线无线都上不了。
+又手动
+
+
+8、彻底放弃了。打算直接安装带有最新版本内核的centOS或者ubuntu。
+

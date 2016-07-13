@@ -1,0 +1,4 @@
+NUC上：
+一、下载：
+         Ice-3.4.2.tar.gz源码安装包 ： wget http://download.zeroc.com/Ice/3.4/Ice-3.4.2.tar.gz   
+         第三方依赖库：wget  http://download.zeroc.com/Ice/3.4/ThirdParty-Sources-3.4.2.tar.gz

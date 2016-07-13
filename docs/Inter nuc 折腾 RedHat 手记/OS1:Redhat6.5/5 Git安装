@@ -1,0 +1,39 @@
+配置好Git源后，安装git报缺包：
+[root@localhost Desktop]# yum install git
+
+…………
+ Not found
+ You could try using --skip-broken to work around the problem
+ You could try running: rpm -Va --nofiles --nodigest
+
+于是采纳建议，发现：
+[root@localhost Desktop]# yum install git --skip-broken
+Packages skipped because of dependency problems:
+    db4-4.3.29-10.el5_5.2.i386 from base
+    gdbm-1.8.0-28.el5.i386 from base
+    git-1.7.12.4-1.el5.rf.x86_64 from dag
+    libstdc++-4.1.2-55.el5.i386 from base
+    4:perl-5.8.8-43.el5_11.i386 from update
+    perl-Git-1.7.12.4-1.el5.rf.x86_64 from dag
+    perl-YAML-0.72-1.el5.rf.noarch from dag
+    subversion-1.6.11-12.el5_10.x86_64 from base
+    subversion-perl-1.6.11-12.el5_10.x86_64 from base
+
+
+为了快速安装Git，故下载安装包：
+http://download.csdn.net/detail/lovejuan007/3713236
+解压后
+$ tar xvfj git-1.7.6.tar.bz2
+$ cd git-1.7.6
+ 
+使用默认配置进行安装，如果想修改配置，可以使用 ./configure --help 来获取帮助
+ 
+$ ./configure
+$ make
+$ make install
+
+用whereis可以找到git装在哪儿
+[root@localhost git-1.7.6]# whereis git
+git: /usr/bin/git /usr/local/bin/git /usr/share/man/man1/git.1.gz
+其中/usr/local/bin/git应该是用安装包安装的版本，别的可能是安装不全的版本
+

@@ -1,0 +1,27 @@
+
+
+2、系统换到ubuntu后，由于有中文版ubuntu而不用，采用的是英文版，所以中文输入法设置反而要费一番功夫。在使用ibus（输入法引擎？）的 前提下，安装拼音输入法步骤如下：
+1）安装输入法软件和库：
+sudo apt install ibus-libpinyin
+sudo apt install ibus-pinyin
+2）安装其他ibus相关的东西（貌似可以略过）
+sudo apt-get install ibus ibus-clutter ibus-gtk3 ibus-qt4
+3）将安装好的输入法设置到ibus。
+sudo ibus-setup（或者在/usr/share/applications里打开IBus Preferences）
+在Input Method里添加安装的中文输入法。
+4）在System Settings的Text Entry中，添加 Chinese(Pinyin)(IBus).
+
+这样在右上角的输入法中就有了pinyin这个选项。
+
+3、安装五笔输入法。
+1）下载software/ibus-table-wubi-1.1.0.20090219.tar.gz后，解压然后安装：
+tar -zxvf ibus-table-wubi-1.1.0.20090219.tar.gz
+cd ibus-table-wubi-1.1.0.20090219
+./configure --prefix=/usr --enable-wubi98 --disable-wubi86
+sudo make install
+照理说，现在在IBus Preferences里应该可以看到五笔输入法才对。然而并没有。。。
+2）又apt-get install ibus-table-wubi，然后IBus Preferences里面也看不到五笔输入法。
+这时我想到，两个应该成功安装的软件都不能被ibus看到，是不是该重启了。于是重启试试，发现果然就可以看到了。
+
+4、这句话就是用极点五笔打的哟^_^
+经验之谈：IBUS还是挺好用的，安装需要的pinyin或wubi输入法，然后重启后，经过设置就可以使用输入法了。

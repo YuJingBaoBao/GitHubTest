@@ -1,0 +1,8 @@
+
+
+Ubuntu时代：
+
+
+系统装好后，firefox看网络视频就是刚刚的。各方面使用体验不输windows。但偶尔会加载不了视频。
+
+但chrome似乎有点问题,不过处理起来也简单，打开一个视频，会提示未安装flash不能播放。按照提示下载安装就行了。安装了浏览器里还是说没有flash。于是又用apt insall pepperflashplugin-nonfree试试，果然chrome可以了。

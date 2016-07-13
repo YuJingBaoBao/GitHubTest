@@ -1,0 +1,17 @@
+想开机就执行的脚本为：
+#adela added the following :
+#sleep 1m
+echo "hello" > ~/started.txt
+echo "Hello,Adela"
+echo "10点半熄灯，请把握时间 "
+shutdown -h 21:30
+
+ss-qt5
+/opt/idea-IC-145.972.3/bin/idea.sh
+
+１、在/etc/rc.local尾部添加不起作用。
+２、添加文件/etc/init.d/adelaStart.sh,将脚本内容粘贴进去。添加该文件的软链接/etc/rc5.d/SAdelaStart，并设置文件及软链接的权限均为777，还是不行。
+３、把第２步的软链接重命名为S06AdelaStart，还是不行啊
+４、把第２步的软链接重命名为S04AdelaStart，也不行
+５、把S04设置为符号链接，sudo ln -s ../init.d/adelaStart.sh S04AdelaStart，和/etc/rc5.d下的其他链接看上去一样，还是不行。
+６、甚至把脚本内容加入到/etc/rc.local里面的exit 0之前，也没有用。

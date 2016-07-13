@@ -1,0 +1,5 @@
+1、下载ideaIC-2016.1.2b.tar.gz（官网http://www.jetbrains.com/idea/download/#section=linux上下载的Community版）
+２、解压后放到/opt下
+３、运行/opt/idea-IC-145.972.3/bin/idea.sh即可启动
+观察到用户设置在~/.IdeaIC2016.1/里
+

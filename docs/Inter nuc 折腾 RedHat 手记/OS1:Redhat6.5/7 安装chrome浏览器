@@ -1,0 +1,23 @@
+（1）参照此方法貌似很简单：
+http://www.cnblogs.com/effective/archive/2012/03/18/2405189.html
+谁知yum失败，源不可用。原来google的源不翻墙访问不了。。。
+似乎陷入了一个死循环。
+
+（2）于是换方案：
+http://jingyan.baidu.com/article/4b52d702790ddcfc5c774b17.html
+前面几步进行都比较顺利，只是在./install_chrome.sh这一步，还是需要连接google的服务器，故又失败了。
+
+（
+停滞在这一步：
+Connecting to dl.google.com|216.58.221.238|:443... failed: Connection timed out.
+Connecting to dl.google.com|2404:6800:4005:809::200e|:443... failed: Network is unreachable.
+
+ERROR: Failed to download google-chrome-stable_current_x86_64.rpm correctly - aborted
+）
+
+
+（3）终于在http://vdisk.weibo.com/s/D9HO0BhjIYXI上下载安装了chrome，结果运行时提示Google Chrome can not be run as root。
+
+(4)最后按照此文的用hexedit修改/opt/google/chrome/chrome文件的方法成功了，可以运行chrome了。运行方法：在命令行里敲google-chrome即可。
+http://blog.csdn.net/panbin0054/article/details/7198315
+

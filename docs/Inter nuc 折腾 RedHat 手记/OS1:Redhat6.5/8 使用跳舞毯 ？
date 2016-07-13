@@ -1,0 +1,25 @@
+按照http://www.educity.cn/linux/1591179.html的说明
+从http://download.chinaunix.net/download/0010000/9948.shtml下载了驱动程序，并解压。奈何启动不了主程序。提示：
+[root@localhost StepMania-3.9]# ./stepmania 
+./stepmania: error while loading shared libraries: libvorbisfile.so.3: cannot open shared object file: No such file or directory
+
+
+于是在网上找到一篇文章，根据指示下载相应的包，
+从此页面（http://www.xiph.org/downloads/）上：
+首先下载libogg，解压后进入目录执行三步骤：
+1     ./configure 
+2     make  
+3     make install  
+然后下载libvorbis，同样解压后执行三步骤
+
+然后执行stepmania主程序还是不行，于是还是按照文章上的顺序（http://blog.csdn.net/luka2008/article/details/38561891）去http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.3.tar.gz下载了libvorbis。还是不行。
+
+这时去/usr/local/lib路径下查看，发现其实libvorbisfile.so.3已经有了，只是stepmania程序找不到它。
+
+网上找到了一篇解决此类问题的文章：http://blog.csdn.net/sahusoft/article/details/7388617
+按此文章说的将/usr/local/lib加入了配置文件中。还是无效，故打算重启试试。
+
+重启后确实是可以找到了，然而有更忧伤的提示：
+./stepmania: error while loading shared libraries: libvorbisfile.so.3: wrong ELF class: ELFCLASS64
+
+

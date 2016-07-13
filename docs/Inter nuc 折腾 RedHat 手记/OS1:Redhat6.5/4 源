@@ -1,0 +1,18 @@
+网络配置成功后，心想可以用YUM大量地安装软件了，岂知第一次YUM就失败了：
+
+[root@localhost Desktop]# yum install gitLoaded plugins: product-id, refresh-packagekit, security, subscription-manager
+This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
+Setting up Install Process
+Nothing to do
+
+
+查了资料得知，RedHat企业版的更新是要收费的，因此只能添加CentOS的更新源作为YUM源。参照
+http://blog.chinaunix.net/uid-20729583-id-2972852.html
+的方法，配置成功。
+
+
+
+20160126 update：
+因为yum、wget等经常失败，故打算换新的源。参考：http://www.cnblogs.com/chuyuhuashi/p/4119993.html
+
+
