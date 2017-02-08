@@ -1,0 +1,3 @@
+查看磁盘速度：
+sudo hdparm -cdt /dev/sda
+可看出磁盘速度为400MB/sec左右
